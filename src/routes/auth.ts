@@ -133,3 +133,13 @@ authRoutes.get('/me', requireAuth, async (req: Request, res: Response, next: Nex
         next(err)
     }
 })
+
+authRoutes.post('/logout', requireAuth, async (_req: Request, res: Response, next: NextFunction) => {
+    try {
+        // JWT is stateless in this project; logout is handled client-side by deleting the token.
+        // This endpoint exists for API symmetry and future token revocation support.
+        return res.status(204).send();
+    } catch (err) {
+        next(err)
+    }
+})
