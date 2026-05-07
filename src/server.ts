@@ -2,6 +2,7 @@ import "dotenv/config";
 import express, { NextFunction, type Request, type Response } from "express";
 import cors from "cors";
 import { authRoutes } from "./routes/auth.js";
+import { productRoutes } from "./routes/products.js";
 
 const app = express();
 const port = Number(process.env.PORT) || 5000;
@@ -17,6 +18,7 @@ app.get('/api/health', (req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/products', productRoutes);
 
 app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
     console.error(err);
